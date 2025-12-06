@@ -1,114 +1,87 @@
-Project Name: Customizable Portfolio Web Page (Multi-Tenant)
-Project Overview
+# Customizable Portfolio Platform (Next.js)
 
-A versatile web portfolio platform that allows multiple companies or individuals to showcase their work and brand identity under one main domain. Each client gets a unique subdomain to manage their portfolio independently. The main domain serves as a public landing page, displaying top clients and promoting the platform.
+A multi-tenant, subdomain-based portfolio platform built with **Next.js**, allowing companies to showcase their work, services, and brand identity. The platform features a main landing page with top clients and individual client subdomains for personalized portfolios.
 
-Objectives
+---
 
-Allow companies to create professional portfolios quickly.
+## **Table of Contents**
+- [Overview](#overview)
+- [Features](#features)
+- [Technology Stack](#technology-stack)
+- [Architecture](#architecture)
+- [Getting Started](#getting-started)
+- [Project Structure](#project-structure)
+- [Future Enhancements](#future-enhancements)
+- [License](#license)
 
-Provide industry-specific templates and color/font customization.
+---
 
-Use subdomains for client-specific portfolios (e.g., client1.portfoliohub.com).
+## **Overview**
+This platform allows multiple clients to create professional portfolios under a single domain using subdomains. The main domain serves as a landing page showcasing top clients, while each client manages their own portfolio via a secure login system.  
 
-Display top clients on the main domain landing page.
+---
 
-Ensure responsive design for desktop, tablet, and mobile.
+## **Features**
+### Main Domain (`portfoliohub.com`)
+- Hero section with call-to-action
+- Top companies showcase
+- Platform overview and features
+- Testimonials / success stories
+- Call-to-action section
+- Footer with links and social media
 
-Centralized admin dashboard for managing all clients and subdomains.
+### Client Subdomains (`client.portfoliohub.com`)
+- Secure login/registration
+- Company profile (logo, branding, mission)
+- Portfolio gallery (projects, media, categories)
+- Services section
+- Testimonials section
+- Contact form and optional map
+- Template, color, and font customization
 
-Key Features
-1. Main Landing Page (portfoliohub.com)
+### Admin Dashboard
+- Super-admin: manage all clients, subdomains, and templates
+- Client-admin: manage only their portfolio content
 
-Hero Section: Introduces the platform with a call-to-action.
+---
 
-Top Companies Showcase: Display featured clients with logos, links to their subdomains, and optional project previews.
+## **Technology Stack**
+- **Frontend & Backend:** Next.js  
+- **Database:** MongoDB or Firebase  
+- **Authentication:** NextAuth.js  
+- **Hosting:** Vercel (supports subdomains)  
+- **Styling:** Tailwind CSS / SCSS / CSS Modules  
 
-Platform Overview: Highlight platform features and ease of use.
+---
 
-Testimonials / Success Stories: Show client feedback to build credibility.
+## **Architecture**
+- **Multi-tenant system:** one main domain with subdomains for each client.  
+- **Subdomain routing:** detect subdomain in Next.js middleware and fetch client-specific data.  
+- **Database structure:**
+  - Clients: stores subdomain, branding, and theme settings
+  - Portfolio content: projects, services, testimonials linked to `client_id`
+  - Top clients: featured clients for main landing page  
 
-Call-to-Action Section: Encourage new clients to register and create a subdomain.
+---
 
-Footer: Links to terms, privacy, contact, and social media.
+## **Getting Started**
+### Prerequisites
+- Node.js >= 18
+- npm or yarn
+- MongoDB or Firebase account
 
-2. Client Portfolio Subdomains (client.portfoliohub.com)
+### Installation
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/portfolio-platform.git
+cd portfolio-platform
 
-User Login/Registration: Secure login and profile management.
+# Install dependencies
+npm install
+# or
+yarn install
 
-Company Profile: Overview, mission, branding (logo, colors, fonts).
-
-Project/Portfolio Gallery: Images, videos, descriptions, categories.
-
-Services Section: Details of services offered.
-
-Testimonials Section: Display client reviews.
-
-Contact Section: Contact form and optional map integration.
-
-Customization: Templates, colors, fonts, layout adjustments.
-
-3. Admin Dashboard
-
-Super-admin: Manage all clients, subdomains, templates, and platform settings.
-
-Client-admin: Manage only their portfolio content.# Customizable-Portfolio
-This project aims to create a versatile and fully customizable web portfolio platform that allows companies or individuals to showcase their work, services, and brand identity. Each client gets a personalized experience with their own login, templates, and brand-specific customization.
-
-
-Architecture
-Domain Structure
-
-Main domain: portfoliohub.com (landing page)
-
-Client subdomains: client1.portfoliohub.com, client2.portfoliohub.com
-
-Database Structure
-
-Clients Collection/Table
-
-client_id
-
-subdomain
-
-company_name
-
-logo
-
-theme_settings (colors, fonts, templates)
-
-Portfolio Content Collection/Table
-
-client_id (foreign key)
-
-projects
-
-services
-
-testimonials
-
-contact_info
-
-Top Clients Collection/Table
-
-client_id
-
-display_order or featured_flag
-
-Multi-Tenant Logic
-
-Detect subdomain to load client-specific content dynamically.
-
-Shared codebase for all clients.
-
-Each client’s data is isolated to prevent access to others’ content.
-
-Technology Stack
-
-Frontend: HTML, CSS, JavaScript, React (for dynamic UI)
-
-Backend: Node.js with Express, or Firebase
-
-Database: MongoDB or Firebase Firestore
-
-Hosting: Vercel, Netlify, or cloud provider supporting subdomains
+# Run development server
+npm run dev
+# or
+yarn dev
